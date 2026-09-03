@@ -257,6 +257,12 @@ esTesoro _ = False
 
 -- hacer
 hayTesoroEn :: [Dir] -> Mapa -> Bool
+hayTesoroEn [] _ = False
+hayTesoroEn [] Fin c = tieneTesoro c
+hayTesoroEn (d:ds) Fin c = tieneTesoro c
+hayTesoroEn (d:ds) Bifurcacion c m1 m2 =  if esIzq d 
+                                            then hayTesoroEn ds m1 
+                                            else hayTesoroEn ds m2
 
 --hacer
 caminoAlTesoro :: Mapa -> [Dir]
@@ -348,8 +354,10 @@ manada =
 
 --hacer
 buenaCaza :: Manada -> Bool
-buenaCaza (M Lobo) =
-buenaCaza  
+buenaCaza manada = cantidadDeAlimento manada > cantidadDeCrias manada
+
+cantidadDeAlimento :: Manada -> Int
+cantidadDeAlimento (M Lobo) = 
 
 --hacer
 elAlfa :: Manada -> (Nombre, Int)
