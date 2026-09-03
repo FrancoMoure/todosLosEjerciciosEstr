@@ -1,3 +1,18 @@
+Tree Stock = [(String, Int)]
+
+consolidar :: [Stock] -> Stock
+consolidar [] = (,)
+consolidar (stock:stocks) = combinarStock stock (consolidar stocks)
+
+combinarStock :: Stock -> Stock -> Stock
+combinarStock (stock1, int1) (stock2, int2) = (stock1, int1+int2)
+//al ser una tupla el stock no se repite por eso pongo stock 1 solamente
+
+
+
+[(arroz,50),(arroz,60)] = (arroz,110)
+
+
 --
 sumatoria :: [Int] -> Int
 sumatoria [] = 0
