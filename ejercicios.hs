@@ -1,3 +1,11 @@
+case xs of 
+[] -> (p,c)
+(y:ys) -> 
+otherwise -> 
+
+just a 
+nothing
+
 Type Stock = [(String, Int)]
 
 consolidar :: [Stock] -> Stock
