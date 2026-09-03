@@ -2,17 +2,22 @@ Type Stock = [(String, Int)]
 
 consolidar :: [Stock] -> Stock
 consolidar [] = []
-consolidar (stock:stocks) = combinarStock stock (consolidar stocks)
+consolidar (x:xs) = combinarStock stock (consolidar stocks)
 
 combinarStock :: Stock -> Stock -> Stock
-combinarStock (stock1, int1) (stock2, int2) = (stock1, int1+int2)
---al ser una tupla el stock no se repite por eso pongo stock 1 solamente
+combinarStock [] ys = ys
+combinarStock (x:xs) ys = mezclar x (combinarStock xs ys)
 
+mezclar :: (String, Int) -> Stock -> Stock
+mezclar x [] = x:[]
+mezclar x (y:ys) = let (p,c) = x
+                    (p',c') = y
+                    in
+                    if(p==p)
+                      then (p,c+c') : ys
+                      else y : (mezclar x ys)
 
-
-
-[(arroz,50),(arroz,60)] = (arroz,110)
-
+[(arroz,50),(arroz,60)] = [(arroz,110)]
 
 --
 sumatoria :: [Int] -> Int
@@ -291,6 +296,8 @@ tesorosPorNivel :: Mapa -> [[Objeto]]
 
 --hacer
 todosLosCaminos :: Mapa -> [[Dir]]
+todosLosCaminos (Fin c) = []
+todosLosCaminos (Bifurcacion c m1 m2) = (todosLosCaminos m1) (todosLosCaminos m2)
 
 --
 sectores :: Nave -> [SectorId]
