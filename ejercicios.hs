@@ -5,7 +5,19 @@ otherwise ->
 
 just a 
 nothing
+maybe
 
+data Maybe a = Nothing | Just a
+data List a = Nil | Cons a (List a)
+
+incrementar :: [Maybe Int] -> [Maybe Int]
+incrementar [] = []
+incrementar (x:xs) = f x : incrementar xs
+
+f :: Maybe Int -> Maybe Int
+f Nothing = Nothing
+f Just n = Just (n + 1)
+------------------------------------------------
 Type Stock = [(String, Int)]
 
 consolidar :: [Stock] -> Stock
@@ -26,6 +38,8 @@ mezclar x (y:ys) = let (p,c) = x
                       else y : (mezclar x ys)
 
 [(arroz,50),(arroz,60)] = [(arroz,110)]
+
+------------------------------------------------------------------------------------
 
 --
 sumatoria :: [Int] -> Int
